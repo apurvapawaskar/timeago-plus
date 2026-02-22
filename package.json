@@ -1,0 +1,79 @@
+{
+  "name": "@apurvapawaskar/timeago-plus",
+  "version": "0.1.5",
+  "description": "Tiny, dependency-free relative time strings (just now, 2m ago, in 3h).",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/apurvapawaskar/timeago-plus"
+  },
+  "publishConfig": {
+    "access": "public"
+  },
+  "homepage": "https://github.com/apurvapawaskar/timeago-plus",
+  "type": "module",
+  "sideEffects": false,
+  "exports": {
+    ".": {
+      "types": "./dist/index.d.ts",
+      "import": "./dist/index.js",
+      "require": "./dist/index.cjs"
+    },
+    "./react": {
+      "types": "./dist/react.d.ts",
+      "import": "./dist/react.js",
+      "require": "./dist/react.cjs"
+    },
+    "./angular": {
+      "types": "./dist/angular.d.ts",
+      "import": "./dist/angular.js",
+      "require": "./dist/angular.cjs"
+    }
+  },
+  "main": "./dist/index.cjs",
+  "module": "./dist/index.js",
+  "types": "./dist/index.d.ts",
+  "files": [
+    "dist"
+  ],
+  "engines": {
+    "node": ">=18"
+  },
+  "peerDependencies": {
+    "react": ">=17 <20",
+    "@angular/core": ">=14 <23"
+  },
+  "peerDependenciesMeta": {
+    "@angular/core": {
+      "optional": true
+    },
+    "react": {
+      "optional": true
+    }
+  },
+  "keywords": [
+    "timeago",
+    "relative-time",
+    "date",
+    "time",
+    "react",
+    "angular",
+    "pipe",
+    "hook",
+    "typescript"
+  ],
+  "devDependencies": {
+    "tsup": "^8.0.2",
+    "typescript": "^5.5.4",
+    "vite": "^5.4.21",
+    "vitest": "^2.1.8"
+  },
+  "scripts": {
+    "clean": "node -e \"require('node:fs').rmSync('dist',{recursive:true,force:true})\"",
+    "build": "npm run clean && tsup src/index.ts src/react.ts src/angular.ts --format esm,cjs --dts --sourcemap --minify --treeshake --external react --external @angular/core",
+    "test": "vitest run",
+    "typecheck": "tsc -p tsconfig.json --noEmit",
+    "prepublishOnly": "npm run test && npm run build",
+    "play": "vite --open"
+  }
+}
