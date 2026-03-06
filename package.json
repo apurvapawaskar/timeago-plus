@@ -60,7 +60,9 @@
     "angular",
     "pipe",
     "hook",
-    "typescript"
+    "typescript",
+    "timeago-plus",
+    "time-ago"
   ],
   "devDependencies": {
     "tsup": "^8.0.2",
